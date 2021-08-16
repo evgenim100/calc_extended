@@ -21,14 +21,17 @@
 
 // Задача про простые числа
 
-let sum;
+let count;
+    
 
 for (let i=2; i < 101; i++){
-  sum = 0;
+  count=0;
     for (let j = 1; j < i+1; j++){
-      if (i/j == Math.trunc(i/j)) sum = sum+j;
-      
-  if (sum == i+1) console.log('Число ' + i + ' является простым. Делители данного числа 1 и', i); 
+      if (i/j == Math.trunc(i/j)) {
+        count++;
+      // console.log('count: ', count);
+      }; 
   
  };
+ if (count==2) console.log('Число ' + i + ' является простым. Делители данного числа 1 и', i);
 };
