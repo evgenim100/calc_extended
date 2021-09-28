@@ -34,14 +34,31 @@ let periodSelect = document.querySelector('.period-select');
 let incomeItems = document.querySelectorAll('.income-items');
 
 let periodAmount = document.querySelector('.period-amount');
+let arrayRuOnly = ['а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', ' ', '.', ',', '!', '?'];
+const ruOnly = function(item){
+  console.log(arrayRuOnly.includes(item.value));
+if (!arrayRuOnly.includes(item.value)){
+  console.log(item);
+  console.log('не русский символ');
+  
+}
 
-// let money;
+};
+
+
+let allNamedPlaceholderInputs = document.querySelectorAll('input[placeholder="Наименование"]');
+allNamedPlaceholderInputs.forEach(function(item){
+item.addEventListener('input', ruOnly(item));
+});
+
+console.log(allNamedPlaceholderInputs);
+
 
 
 let isNumber = function(n){
   return !isNaN(parseFloat(n)) && isFinite(n)
 };
-
+console.log('isNumber', isNumber(1));
 let appData = {
   budget: 0,
   income: {},
@@ -117,6 +134,7 @@ let appData = {
     // let expensesItems = document.querySelectorAll('.expenses-items');
     // console.log(expensesItem.parentNode);
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
+    cloneExpensesItem.value = '';
     expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesPlus);
     expensesItems = document.querySelectorAll('.expenses-items');
     if (expensesItems.length === 3){
@@ -128,6 +146,7 @@ let appData = {
     // let expensesItems = document.querySelectorAll('.expenses-items');
     // console.log(expensesItem.parentNode);
     let cloneIncomeItem = incomeItems[0].cloneNode(true);
+    cloneIncomeItem.value = '';
     incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomePlus);
     incomeItems = document.querySelectorAll('.income-items');
     if (incomeItems.length === 3){
